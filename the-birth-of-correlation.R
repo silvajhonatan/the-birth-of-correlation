@@ -51,3 +51,18 @@ galton_heights %>% mutate(father = round(father))  %>%
   xlab('Fathers height') + ylab('Sons height') + ggtitle('Scatter of all groups') + 
   theme(plot.title = element_text(hjust = 0.5))
 ggsave('figs/father_linear.png')
+
+
+mu_x = mean(galton_heights$father)
+mu_y = mean(galton_heights$son)
+sd_x = sd(galton_heights$father)
+sd_y = sd(galton_heights$son)
+rho <- galton_heights %>% summarize(r = cor(father,son)) %>% .$r
+m = rho*(sd_y/sd_x)
+b = mu_y - m*mu_x
+galton_heights %>%
+  ggplot(aes(father,son)) + geom_point(alpha=.6) +
+  geom_abline(intercept=b,slope=m)
+ggsave('figs/father_son_regression.png')
+
+y = m*72 + b

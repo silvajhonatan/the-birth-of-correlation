@@ -1,1 +1,1 @@
-# the-birth-of-correlation
+[The birth of correlation](https://www.linkedin.com/pulse/birth-correlation-regression-jhonatan-silva)
